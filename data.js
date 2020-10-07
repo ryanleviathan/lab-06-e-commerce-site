@@ -48,18 +48,3 @@ export const starships = [
         shipPrice: 5,
     }
 ];
-
-export const cart = [
-    {
-        id: 'honshu',
-        quantity: 2,
-    },
-    {
-        id: 'reliant',
-        quantity: 3,
-    },
-    {
-        id: 'enterprise-c',
-        quantity: 2,
-    },
-];
