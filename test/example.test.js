@@ -1,5 +1,5 @@
 // IMPORT MODULES under test here:
-import { renderShip, renderTableRow } from '../utils.js';
+import { renderShip, renderTableRow, calculateSubTotal, calculateTotal } from '../utils.js';
 
 const test = QUnit.test;
 
@@ -42,4 +42,68 @@ test2('should take in a cartItem and return a tr element with the appropriate co
     //Expect
     // Make assertions about what is expected versus the actual result
     expect.equal(actual.outerHTML, expected);
+});
+
+const test3 = QUnit.test;
+
+test3('should take in a cartItem and quantity and return a subtotal', (expect) => {
+    const price = 4;
+    const quantity = 2;
+
+    //Arrange
+    // Set up your arguments and expectations
+    const expected = 8;
+    
+    //Act 
+    // Call the function you're testing and set the result to a const
+    const actual = calculateSubTotal(price, quantity);
+
+    //Expect
+    // Make assertions about what is expected versus the actual result
+    expect.equal(actual, expected);
+});
+
+const test4 = QUnit.test;
+
+test4('should take in a subtotal and return a total', (expect) => {
+    const cart = [
+        {
+            id: 'honshu',
+            quantity: 2,
+        },
+        {
+            id: 'reliant',
+            quantity: 3,
+        },
+    ];
+
+    const sourceOfTruth = [
+        {
+            id: 'honshu',
+            shipName: 'Nebula-Class USS Honshu',
+            shipImage: 'Nebula-Class-USS-Honshu.jpg',
+            shipDescription: 'The Nebula-class shares a similar design lineage with its larger Galaxy-class counterpart, notably its primary and secondary hulls and nacelles. Atop the primary hull is a superstructure which can support a variety of modules, such as the inclusion of a triangular platform, fitted with torpedo launchers, an oval platform, or additional warp nacelles.',
+            shipCategory: 'Nebula class.',
+            shipPrice: 4,
+        },
+        {
+            id: 'reliant',
+            shipName: 'Miranda-class Reliant',
+            shipImage: 'Miranda-class-Reliant.jpg',
+            shipDescription: 'The configuration of the Miranda-class shares a similar design lineage and features with our refitted Constitution-class. The Miranda-class is composed of a single primary hull, consisting of a saucer that is similar to that of the Constitution-class; however, the bridge module, positioned on top in the center, is shaped differently than the Constitution-class module.',
+            shipCategory: 'Miranda class.',
+            shipPrice: 5,
+        }
+    ];
+    //Arrange
+    // Set up your arguments and expectations
+    const expected = 23;
+    
+    //Act 
+    // Call the function you're testing and set the result to a const
+    const actual = calculateTotal(cart, sourceOfTruth);
+
+    //Expect
+    // Make assertions about what is expected versus the actual result
+    expect.equal(actual, expected);
 });
