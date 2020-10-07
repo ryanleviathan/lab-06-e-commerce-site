@@ -13,6 +13,8 @@ for (let i = 0; i < cart.length; i++) {
 
 const total = calculateTotal(cart);
 
+console.log();
+
 function calculateTotal(cart) {
     // initialize an accumulator to 0
     let accumulator = 0;
@@ -22,15 +24,12 @@ function calculateTotal(cart) {
         const item = cart[i];
         // go get the item's true data
         const trueShip = findById(starships, item.id);
-        console.log(trueShip);
 
         // use the true data's price with the cart's quantity to get the subtotal for this item
         const subtotal = trueShip.shipPrice * item.quantity;
-        console.log(shipPrice);
 
         // add that subtotal to the accumulator
         accumulator = accumulator + subtotal;
     }
-
     return accumulator;
 }
