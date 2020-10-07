@@ -1,5 +1,7 @@
 import { starships as sourceOfTruth } from '../data.js';
 
+export const CART = 'CART';
+
 export function findById(someArray, someId) {
     for (let i = 0; i < someArray.length; i++) {
         const item = someArray[i];
@@ -47,11 +49,45 @@ export function renderShip(starship) {
     li.appendChild(shipCategory);
 
     button.textContent = 'Add to Megacart';
-    
+
+    button.addEventListener('click', () => {
+
+        const cart = getFromLocalStorage(CART) || [];
+
+        const itemInCart = findById(cart, starship.id);
+
+        if (itemInCart === undefined) {
+
+            const newCartItem = {
+                id: starship.id,
+                quantity: 1, 
+            };
+
+            cart.push(newCartItem);
+        } else {
+            itemInCart.quantity++;
+        }
+
+        setInLocalStorage(CART, cart);
+    });
 
     li.appendChild(button);
 
     return li;
+}
+
+export function getFromLocalStorage(key) {
+    const item = localStorage.getItem(key);
+
+    return JSON.parse(item);
+}
+
+export function setInLocalStorage(key, value) {
+    const itemAsString = JSON.stringify(value);
+
+    localStorage.setItem(key, itemAsString);
+
+    return value;
 }
 
 export function renderTableRow(cartItem) {
