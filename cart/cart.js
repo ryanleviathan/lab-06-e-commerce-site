@@ -12,7 +12,6 @@ for (let i = 0; i < cart.length; i++) {
 }
 
 const total = calculateTotal(cart);
-console.log(total, 'total');
 
 const cartTotal = document.getElementById('cart-total');
 cartTotal.textContent = `Total = ${total} million credits`;

@@ -95,7 +95,6 @@ export function calculateTotal(cart) {
         // add that subtotal to the accumulator
         accumulator = accumulator + subtotal;
         
-        console.log(accumulator);
     }
     return accumulator;
 }
