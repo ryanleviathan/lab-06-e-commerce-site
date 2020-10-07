@@ -47,6 +47,7 @@ export function renderShip(starship) {
     li.appendChild(shipCategory);
 
     button.textContent = 'Add to Megacart';
+    
 
     li.appendChild(button);
 
