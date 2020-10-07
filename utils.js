@@ -70,7 +70,7 @@ export function renderTableRow(cartItem) {
     tdPrice.textContent = `${price} million credits`;
     tdName.textContent = name;
     
-    const total = price * cartItem.quantity;
+    const total = calculateSubTotal(price, cartItem.quantity);
 
     tdTotal.textContent = `${total} million credits`;
 
@@ -79,22 +79,22 @@ export function renderTableRow(cartItem) {
     return tr;
 }
 
-export function calculateTotal(cart) {
-    // initialize an accumulator to 0
+export function calculateSubTotal(price, quantity) {
+    // for every item in the cart
+    let subTotal = price * quantity;
+
+    return subTotal;
+}
+
+export function calculateTotal(cart, sourceOfTruth) {
     let accumulator = 0;
 
-    // for every item in the cart
     for (let i = 0; i < cart.length; i++) {
         const item = cart[i];
         // go get the item's true data
         const trueShip = findById(sourceOfTruth, item.id);
 
-        // use the true data's price with the cart's quantity to get the subtotal for this item
-        const subtotal = trueShip.shipPrice * item.quantity;
-
-        // add that subtotal to the accumulator
-        accumulator = accumulator + subtotal;
-        
+        accumulator += calculateSubTotal(trueShip.shipPrice, item.quantity); 
     }
     return accumulator;
 }
