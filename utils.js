@@ -32,7 +32,7 @@ export function renderShip(starship) {
     li.appendChild(shipImage);
 
     shipPrice.classList.add('price');
-    shipPrice.textContent = `${starship.shipPrice} million credits`;
+    shipPrice.textContent = `${starship.price} million credits`;
 
     li.appendChild(shipPrice);
 
@@ -60,13 +60,19 @@ export function renderTableRow(cartItem) {
     const tdQuantity = document.createElement('td');
     const tdTotal = document.createElement('td');
 
+    tdQuantity.textContent = cartItem.quantity;
+
     const shipData = findById(sourceOfTruth, cartItem.id);
+    
+    const price = shipData.shipPrice;
+    const name = shipData.shipName;
 
-    const price = shipData.price;
-    const name = shipData.name;
-
-    tdPrice.textContent = `${price} credits`;
+    tdPrice.textContent = `${price} million credits`;
     tdName.textContent = name;
+    
+    const total = price * cartItem.quantity;
+
+    tdTotal.textContent = `${total} million credits`;
 
     tr.append(tdName, tdPrice, tdQuantity, tdTotal);
 
