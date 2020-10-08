@@ -1,4 +1,4 @@
-import { starships as sourceOfTruth } from '../data.js';
+import { starships as sourceOfTruth } from './data.js';
 
 export const CART = 'CART';
 
