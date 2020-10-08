@@ -23,5 +23,5 @@ orderButton.addEventListener('click', () => {
     alert(cartAsAString);
 
     localStorage.clear();
-    window.location.href = '../index.html';
+    window.location.href = '../';
 });
