@@ -34,7 +34,7 @@ export function renderShip(starship) {
     li.appendChild(shipImage);
 
     shipPrice.classList.add('price');
-    shipPrice.textContent = `${starship.price} million credits`;
+    shipPrice.textContent = `${starship.shipPrice} million credits`;
 
     li.appendChild(shipPrice);
 
