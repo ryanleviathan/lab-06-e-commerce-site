@@ -3,7 +3,7 @@ export const starships = [
         id: 'enterprise-a',
         shipName: 'Constitution refit Enterprise-A',
         shipImage: 'Constitution-refit-Enterprise-A.jpg',
-        shipDescription: 'This, very old model has been heavily modified for modern usage. There are modifications to the deflector dish, the side walls of the engineering hull, the nacelle spires, the nacelle aft ends and the bridge module. The crew capacity has been increased from 200 to 400 crew members without forsaking comfort. The completely new bridge module has all the newest features an intrepid captain may want.',
+        shipDescription: 'This very old model has been heavily modified for modern usage. There are modifications to the deflector dish, the side walls of the engineering hull, the nacelle spires, the nacelle aft ends and the bridge module. The crew capacity has been increased from 200 to 400 crew members without forsaking comfort. The completely new bridge module has all the newest features an intrepid captain may want.',
         shipCategory: 'Constitution class.',
         shipPrice: 2,
     },
