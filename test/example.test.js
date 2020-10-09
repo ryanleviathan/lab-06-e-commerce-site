@@ -1,5 +1,5 @@
 // IMPORT MODULES under test here:
-import { renderShip, renderTableRow, calculateSubTotal, calculateTotal, shipsFromLocalStorage } from '../utils.js';
+import { renderShip, renderTableRow, calculateSubTotal, calculateTotal, addShip } from '../utils.js';
 
 const test = QUnit.test;
 
@@ -115,12 +115,15 @@ test5('addProduct should take in a product object and add it to local storage (r
         name: 'Look at me imma ship',
         shipPrice: 2
     };
-    const expectation = null;
+    const expectation = {
+        "name": "Look at me imma ship",
+        "shipPrice": 2
+    };
 
     //Arrange
     // Set up your arguments and expectations    //Act 
     // Call the function you're testing and set the result to a const
-    shipsFromLocalStorage(newShip);
+    addShip(newShip);
 
     const localStorageAfter = JSON.parse(localStorage.getItem('starships'));
     //Expect
