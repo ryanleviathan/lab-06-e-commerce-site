@@ -1,6 +1,4 @@
-import { starships as sourceOfTruth } from './data.js';
-
-export const CART = 'CART';
+import { starships as sourceOfTruth, CART, PRODUCTS } from './data.js';
 
 export function findById(someArray, someId) {
     for (let i = 0; i < someArray.length; i++) {
@@ -10,6 +8,44 @@ export function findById(someArray, someId) {
             return item;
         }
     }
+}
+
+export function shipsFromLocalStorage() {
+    let localStorageShips = JSON.parse(localStorage.getItem(PRODUCTS));
+
+    if (!localStorageShips) {
+        const shipsAsString = JSON.stringify(sourceOfTruth);
+
+        localStorage.setItem(PRODUCTS, shipsAsString);
+        localStorageShips = sourceOfTruth;
+    }
+    return localStorageShips;
+}
+const shipFromLocalStorage = shipsFromLocalStorage();
+
+export function renderTableRow(cartItem) {
+    const tr = document.createElement('tr');
+    const tdName = document.createElement('td');
+    const tdPrice = document.createElement('td');
+    const tdQuantity = document.createElement('td');
+    const tdTotal = document.createElement('td');
+
+    tdQuantity.textContent = cartItem.quantity;
+
+    const shipData = findById(shipFromLocalStorage, cartItem.id);
+    const price = shipData.shipPrice;
+    const name = shipData.shipName;
+
+    tdPrice.textContent = `${price} million credits`;
+    tdName.textContent = name;
+    
+    const total = calculateSubTotal(price, cartItem.quantity);
+
+    tdTotal.textContent = `${total} million credits`;
+
+    tr.append(tdName, tdPrice, tdQuantity, tdTotal);
+
+    return tr;
 }
 
 export function renderShip(starship) {
@@ -29,7 +65,8 @@ export function renderShip(starship) {
     li.appendChild(shipName);
 
     shipImage.classList.add('img');
-    shipImage.src = `../assets/${starship.shipImage}`;
+    shipImage.src = starship.shipImage;
+    shipImage.style.width = '200px';
 
     li.appendChild(shipImage);
 
@@ -88,32 +125,6 @@ export function setInLocalStorage(key, value) {
     localStorage.setItem(key, itemAsString);
 
     return value;
-}
-
-export function renderTableRow(cartItem) {
-    const tr = document.createElement('tr');
-    const tdName = document.createElement('td');
-    const tdPrice = document.createElement('td');
-    const tdQuantity = document.createElement('td');
-    const tdTotal = document.createElement('td');
-
-    tdQuantity.textContent = cartItem.quantity;
-
-    const shipData = findById(sourceOfTruth, cartItem.id);
-    
-    const price = shipData.shipPrice;
-    const name = shipData.shipName;
-
-    tdPrice.textContent = `${price} million credits`;
-    tdName.textContent = name;
-    
-    const total = calculateSubTotal(price, cartItem.quantity);
-
-    tdTotal.textContent = `${total} million credits`;
-
-    tr.append(tdName, tdPrice, tdQuantity, tdTotal);
-
-    return tr;
 }
 
 export function calculateSubTotal(price, quantity) {
