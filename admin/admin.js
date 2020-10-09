@@ -1,6 +1,7 @@
 const form = document.querySelector('form');
+//const form2 = document.querySelector('form2');
 import { PRODUCTS } from '../data.js';
-import { shipsFromLocalStorage } from '../utils.js';
+import { findById, shipsFromLocalStorage } from '../utils.js';
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -30,3 +31,26 @@ form.addEventListener('submit', (e) => {
     const stringyLocalShips = JSON.stringify(localStorageShips);
     localStorage.setItem(PRODUCTS, stringyLocalShips);
 });
+
+// function findShipToRemove(PRODUCTS, shipId) {
+//     const shipArray = shipsFromLocalStorage();
+//     const findId = findById(shipArray, shipId);
+
+//     if (findId === shipId) {
+//         return PRODUCTS.filter(findId);
+//     }
+// }
+
+// form2.addEventListener('submit', (e) => {
+//     e.preventDefault();
+
+//     const data2 = new FormData(form2);
+//     const id = Window.localStorage;
+//     const idToRemove = data2.get('id');
+
+//     for (let i = 0; i < id.length; i++)
+
+//         if (id === idToRemove)
+//             return Storage.removeItem(PRODUCTS);
+// });
+
