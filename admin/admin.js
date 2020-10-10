@@ -1,4 +1,4 @@
-import { addShip } from '../data.js';
+import { addShip } from '../utils.js';
 const form = document.querySelector('form');
 form.addEventListener('submit', () => {
     const form = document.querySelector('form');
